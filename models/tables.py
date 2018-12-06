@@ -18,6 +18,10 @@ def get_name():
 def get_user_id():
     return auth.user.id if auth.user is not None else None
 
+def get_current_time():
+    return datetime.datetime.utcnow()
+
+
 db.define_table('checklist',
                 Field('user_email', default=get_user_email()),
                 Field('title'),
@@ -63,6 +67,14 @@ db.listing.phone.writable = db.listing.phone.readable = False
 
 
 db.listing.email.writable = db.listing.email.readable = False
+db.define_table('post',
+                Field('post_author', default=get_user_email()),
+                Field('post_title'),
+                Field('post_price'),
+                Field('post_description', 'text'),
+                Field('post_time', 'datetime', default=get_current_time()),
+      	        Field('post_category'),
+                Field('post_location'))
 
 # after defining tables, uncomment below to enable auditing
 # auth.enable_record_versioning(db)
