@@ -13,45 +13,51 @@
 	</div>
 
 	<div class="column left">
-		<h2>Seller info:</h2>
+		<h2>Seller info</h2>
 		<p>
-	  		First Name
+	  	Name:
 			{{=item.seller}}
 			  <br>
-	 		 Mobile
+	 		Mobile: 
 			{{=profile.mobile_phone}}
 			  <br>
-	  		Email
+	  	Email:
 			{{=item.email}}
-			<br>
+				<br>
+			Venmo:
+			{{=profile.venmo}}
+				<br>
 	  	</p>
 	</div>
 
 	<div class="column middle wrap">
 		<h2>Photo</h2>
-    	<p>image 		</p>
-
+   	<img width="400px" class="center" src="{{=URL('download', args=item.image)}}">
 	</div>
 
 	<div class="column right ">
-		<h2>Item Info:</h2>
+		<h2>Item Info</h2>
     	<p>
-			Item name
+			Item Name:
 			{{=item.item}}
 			<br>
-			description
+			Description:
 			{{=item.description}}
 			<br>
-			Price
+			Price: $
 			{{=item.price}}
 			<br>
-			college location
+			College Location:
 			{{=item.college_location}}
 			<br>
-			sold?
-			{{=item.sold}}
+			Sold?
+			{{if item.sold:}}
+				Yes
+			{{else:}}
+				No
+			{{pass}}
 			<br>
-			Date POsted
+			Date Posted:
 			{{=item.date_posted}}
 		</p>
 	</div>
