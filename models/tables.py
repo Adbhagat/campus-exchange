@@ -8,10 +8,11 @@
 # Consult manual for more options, validators, etc.
 
 import datetime
+now = datetime.datetime.today()
 
 def get_user_email():
     return auth.user.email if auth.user is not None else None
-
+  
 def get_name():
     return auth.user.first_name if auth.user is not None else None
 
@@ -43,7 +44,8 @@ db.define_table('listing',
                                                      'Porter', 'Merrill', 'Crown',
                                                      'Stevenson', 'Kresge', 'Cowell',
                                                      'College 9', 'College 10','Other'])),
-                # Field('date_posted', 'date', default=request.now)
+                Field('date_posted', 'datetime', default=now, writable=False)
+
                 )
 
 db.checklist.user_email.writable = False
@@ -52,6 +54,7 @@ db.checklist.updated_on.writable = db.checklist.updated_on.readable = False
 db.checklist.id.writable = db.checklist.id.readable = False
 # Hides the check box 'is_public' for the user when creating a memo
 db.checklist.is_public.readable = db.checklist.is_public.writable = False
+
 
 db.listing.sold.writable = False
 db.listing.likes.writable = db.listing.likes.writable = False
